@@ -108,7 +108,7 @@ const projects: Project[] = [
       'Compact PCB for WiFi-enabled plug with power measurement support, relay drive circuitry, and EMI-conscious routing.',
     tools: ['Altium Designer'],
     complexity: 'intermediate',
-    images: [{ thumb: '/src/assets/wifi-plug.jpg', render3d: '/src/assets/wifi-plug-3d.png' }],
+    images: [{ thumb: '/wifi-plug.jpg', render3d: '/src/assets/wifi-plug-3d.png' }],
   },
 
   {
