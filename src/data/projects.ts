@@ -1,58 +1,125 @@
 import type { Project } from '../types'
 
-
 const projects: Project[] = [
-{
-id: 'p1',
-title: 'Low-power IoT Sensor Node',
-description: '4-layer IoT node with power gating, BLE radio and power budget optimized for 2+ years.',
-tools: ['KiCad', 'LTSpice'],
-complexity: 'advanced',
-images: [
-{ thumb: '/src/assets/project1.png', render3d: '/src/assets/project1-3d.png' }
-]
-},
-{
-id: 'p2',
-title: 'High-speed DDR Routing Adapter',
-description: 'Adapter board implementing controlled impedance traces and length matching for DDR4 interface.',
-tools: ['Altium Designer'],
-complexity: 'advanced',
-images: [ { thumb: '/src/assets/project2.png', render3d: '/src/assets/project2-3d.png' } ]
-},
-{
-id: 'p3',
-title: 'RF Front-end Module',
-description: '2.4GHz RF front-end with careful grounding and shielding to reduce EMI.',
-tools: ['Altium Designer', 'OrCAD'],
-complexity: 'intermediate',
-images: [ { thumb: '/src/assets/project3.png', render3d: '/src/assets/project3-3d.png' } ]
-},
-{
-id: 'p4',
-title: 'USB-C Power Delivery Board',
-description: 'Robust PD negotiation and power path routing for fast-charge applications.',
-tools: ['Eagle'],
-complexity: 'intermediate',
-images: [ { thumb: '/src/assets/project4.png', render3d: '/src/assets/project4-3d.png' } ]
-},
-{
-id: 'p5',
-title: 'Compact Wearable PCB',
-description: 'Miniaturized 6-layer board with flexible sections for ergonomic wearables.',
-tools: ['KiCad'],
-complexity: 'advanced',
-images: [ { thumb: '/src/assets/project5.png', render3d: '/src/assets/project5-3d.png' } ]
-},
-{
-id: 'p6',
-title: 'Power Management Module',
-description: 'High-efficiency buck converter module with thermal-aware layout and plane splits.',
-tools: ['LTSpice', 'Altium Designer'],
-complexity: 'simple',
-images: [ { thumb: '/src/assets/project6.png', render3d: '/src/assets/project6-3d.png' } ]
-}
-]
+  {
+    id: 'p1',
+    title: 'Microbit Smart Robot Car',
+    description:
+      '2-layer control board featuring motor drivers, sensor interfaces, and Microbit integration. Designed for stable operation with proper power routing and noise isolation.',
+    tools: ['Altium Designer'],
+    complexity: 'intermediate',
+    images: [{ thumb: '/src/assets/robot.png', render3d: '/src/assets/robot-3d.png' }],
+  },
 
+  {
+    id: 'p2',
+    title: 'Audio Amplifier Driver Board',
+    description:
+      'Power-efficient amplifier driver PCB with optimized grounding, reduced noise coupling, and thermal-aware routing for clear audio output.',
+    tools: ['Altium Designer'],
+    complexity: 'intermediate',
+    images: [{ thumb: '/src/assets/amplifier-driver.png', render3d: '/src/assets/amplifier-driver-3d.png' }],
+  },
+
+  {
+    id: 'p3',
+    title: 'High-Power Audio Amplifier PCB',
+    description:
+      '2-layer amplifier board designed for stable high-current operation with careful trace sizing, plane distribution, and EMI-conscious layout.',
+    tools: ['Altium Designer'],
+    complexity: 'simple',
+    images: [{ thumb: '/src/assets/amplifier.png', render3d: '/src/assets/amplifier-3d.png' }],
+  },
+
+  {
+    id: 'p4',
+    title: 'AC & DC Controller Board',
+    description:
+      'Control PCB for AC/DC applications with isolation-aware routing, power-path optimization, and robust safety spacing for reliable field performance.',
+    tools: ['Altium Designer'],
+    complexity: 'advanced',
+    images: [{ thumb: '/src/assets/acdc.png', render3d: '/src/assets/acdc-3d.png' }],
+  },
+
+  {
+    id: 'p5',
+    title: 'Smart WiFi Bulb Load PCB (MCPCB)',
+    description:
+      'Thermal-optimized MCPCB board designed for WiFi-enabled bulbs with efficient LED driving and EMI-minimized high-voltage routing.',
+    tools: ['Altium Designer'],
+    complexity: 'intermediate',
+    images: [{ thumb: '/src/assets/wifi-bulb-load.png', render3d: '/src/assets/wifi-bulb-load-3d.png' }],
+  },
+
+  {
+    id: 'p6',
+    title: 'DOB LED Panel PCB',
+    description:
+      'Driver-on-board (DOB) LED panel PCB with precise current paths, isolated sections, and optimized thermal management for long lifetime.',
+    tools: ['Altium Designer'],
+    complexity: 'intermediate',
+    images: [{ thumb: '/src/assets/dob-panel.png', render3d: '/src/assets/dob-panel-3d.png' }],
+  },
+
+  {
+    id: 'p7',
+    title: 'Smart WiFi 3CCT & RGB Panel Load (MCPCB)',
+    description:
+      'MCPCB designed for 3CCT & RGB control with RF-friendly layout, strong thermal performance, and dedicated power paths for LED segments.',
+    tools: ['Altium Designer'],
+    complexity: 'advanced',
+    images: [{ thumb: '/src/assets/wifi-rgb.png', render3d: '/src/assets/wifi-rgb-3d.png' }],
+  },
+
+  {
+    id: 'p8',
+    title: 'Smart WiFi Batten PCB',
+    description:
+      '2-layer batten PCB for smart lighting with load control, EMI-optimized routing, and integrated driver circuitry.',
+    tools: ['Altium Designer'],
+    complexity: 'intermediate',
+    images: [{ thumb: '/src/assets/wifi-batten.png', render3d: '/src/assets/wifi-batten-3d.png' }],
+  },
+
+  {
+    id: 'p9',
+    title: 'Smart Bluetooth Bulb PCB',
+    description:
+      'Bluetooth-based lighting board with RF-aware routing, noise isolation and stable LED driver integration for flicker-free performance.',
+    tools: ['Altium Designer'],
+    complexity: 'intermediate',
+    images: [{ thumb: '/src/assets/bt-bulb.png', render3d: '/src/assets/bt-bulb-3d.png' }],
+  },
+
+  {
+    id: 'p10',
+    title: 'Smart WiFi Bulb Driver Board',
+    description:
+      'High-voltage LED driver board with DFM-optimized layout, stable current regulation and robust isolation for safety and efficiency.',
+    tools: ['Altium Designer'],
+    complexity: 'advanced',
+    images: [{ thumb: '/src/assets/wifi-driver.png', render3d: '/src/assets/wifi-driver-3d.png' }],
+  },
+
+  {
+    id: 'p11',
+    title: 'Smart WiFi Plug',
+    description:
+      'Compact PCB for WiFi-enabled plug with power measurement support, relay drive circuitry, and EMI-conscious routing.',
+    tools: ['Altium Designer'],
+    complexity: 'intermediate',
+    images: [{ thumb: '/src/assets/wifi-plug.jpg', render3d: '/src/assets/wifi-plug-3d.png' }],
+  },
+
+  {
+    id: 'p12',
+    title: 'Smart WiFi 3CCT & RGB Panel Controller',
+    description:
+      '4-layer smart lighting controller optimized for RF performance, power handling and thermal balance for long-term reliability.',
+    tools: ['Altium Designer'],
+    complexity: 'advanced',
+    images: [{ thumb: '/src/assets/rgb-controller.png', render3d: '/src/assets/rgb-controller-3d.png' }],
+  },
+]
 
 export default projects

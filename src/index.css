@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
   --color-pcb-900: #071019;
@@ -7,18 +7,27 @@
   --color-pcb-blue: #00aaff;
 }
 
-:root{
---bg: #071019;
---muted: #94a3b8;
+:root {
+  --bg: #071019;
+  --muted: #94a3b8;
 }
 
-html, body, #root { height: 100%; }
-body{
-@apply bg-pcb-900 text-slate-100 antialiased;
-background-image: linear-gradient(180deg, rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('/src/assets/pcb-bg.png');
-background-size: cover;
-background-position: center;
+html,
+body,
+#root {
+  height: 100%;
+}
+body {
+  @apply bg-pcb-900 text-slate-100 antialiased;
+  background-image:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)),
+    url('/src/assets/pcb-bg.png');
+  background-size: cover;
+  background-position: center;
 }
 
 /* small utility for glass look */
-.glass { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.04); }
+.glass {
+  background: rgba(32 , 40 ,45);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
