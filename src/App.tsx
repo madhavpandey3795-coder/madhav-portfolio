@@ -9,20 +9,19 @@ import Workflow from './sections/Workflow'
 import Testimonials from './sections/Testimonials'
 import Contact from './sections/Contact'
 
-
-export default function App(){
-return (
-<PageLayout>
-<div className="container mx-auto p-6">
-<Hero />
-<About />
-<Skills />
-<Portfolio />
-<Services />
-<Workflow />
-<Testimonials />
-<Contact />
-</div>
-</PageLayout>
-)
+export default function App() {
+  return (
+    <PageLayout>
+      <div className="container mx-auto p-6">
+        <Hero />
+        <About />
+        <Skills />
+        <Portfolio />
+        <Services />
+        <Workflow />
+        <Testimonials />
+        <Contact />
+      </div>
+    </PageLayout>
+  )
 }
