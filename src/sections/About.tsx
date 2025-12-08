@@ -15,7 +15,7 @@ export default function About() {
           className="col-span-1"
         >
           <img
-            src="/src/assets/profile.jpg"
+            src="/profile.jpg"
             alt="profile"
             className="rounded-2xl w-56 h-56 object-cover"
           />
