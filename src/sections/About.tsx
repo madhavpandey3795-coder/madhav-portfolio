@@ -16,7 +16,7 @@ export default function About() {
         >
           <img
             src="/profile.jpg"
-            alt="profile"
+            alt="Madhav Pandey - PCB Designer"
             className="rounded-2xl w-56 h-56 object-cover"
           />
         </motion.div>
