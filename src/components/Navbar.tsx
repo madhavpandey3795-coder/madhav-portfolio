@@ -5,9 +5,9 @@ import Button from '../components/Button'
 const NAV = [
   { id: 'home', label: 'Home' },
   { id: 'about', label: 'About' },
-  { id: 'skills', label: 'Skills' },
   { id: 'portfolio', label: 'Portfolio' },
   { id: 'services', label: 'Services' },
+  { id: 'skills', label: 'Skills' },
   { id: 'workflow', label: 'Workflow' },
   { id: 'testimonials', label: 'Testimonials' },
   { id: 'contact', label: 'Contact' },

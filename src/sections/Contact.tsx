@@ -1,32 +1,43 @@
 import React, { useState } from 'react'
 import SectionTitle from '../components/SectionTitle'
-import Button from '../components/Button'
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
-  const [errors, setErrors] = useState<{ [k: string]: string }>({})
+  const [loading, setLoading] = useState(false)
   const [sent, setSent] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
-  function validate() {
-    const e: Record<string, string> = {}
-    if (!form.name) e.name = 'Name is required'
-    if (!form.email || !/^\S+@\S+\.\S+$/.test(form.email))
-      e.email = 'Valid email required'
-    if (!form.message || form.message.length < 10)
-      e.message = 'Message should be at least 10 chars'
-    setErrors(e)
-    return Object.keys(e).length === 0
-  }
-
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    if (!validate()) return
-    // Integrate with serverless email endpoint or send via API in production
-    setSent(true)
-    setTimeout(() => {
+  
+    const formEl = e.currentTarget // ✅ capture once (won't become null later)
+  
+    setError(null)
+    setLoading(true)
+  
+    try {
+      const fd = new FormData(formEl)
+  
+      fd.set('_subject', 'New email from freelancing website')
+      fd.set('_captcha', 'false')
+      fd.set('_template', 'table')
+  
+      const res = await fetch('https://formsubmit.co/ajax/madhav976141@gmail.com', {
+        method: 'POST',
+        body: fd,
+        headers: { Accept: 'application/json' },
+      })
+  
+      if (!res.ok) throw new Error('Failed to send. Please try again.')
+  
+      setSent(true)
       setForm({ name: '', email: '', message: '' })
-      setSent(false)
-    }, 1500)
+      formEl.reset() // ✅ use captured element
+    } catch (err: any) {
+      setError(err?.message ?? 'Something went wrong. Please try again.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -35,70 +46,108 @@ export default function Contact() {
         <SectionTitle subtitle="Get in touch">Contact</SectionTitle>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <form className="glass p-6 rounded-lg" onSubmit={handleSubmit} noValidate>
-            <label className="block mb-3">
-              <div className="text-sm">Name</div>
-              <input
-                value={form.name}
-                onChange={(e) => setForm({ ...form, name: e.target.value })}
-                className="mt-1 w-full bg-transparent border border-white/10 rounded-md p-2"
-              />
-              {errors.name && (
-                <div className="text-xs text-rose-400 mt-1">{errors.name}</div>
-              )}
-            </label>
-
-            <label className="block mb-3">
-              <div className="text-sm">Email</div>
-              <input
-                value={form.email}
-                onChange={(e) => setForm({ ...form, email: e.target.value })}
-                className="mt-1 w-full bg-transparent border border-white/10 rounded-md p-2"
-              />
-              {errors.email && (
-                <div className="text-xs text-rose-400 mt-1">{errors.email}</div>
-              )}
-            </label>
-
-            <label className="block mb-3">
-              <div className="text-sm">Message</div>
-              <textarea
-                value={form.message}
-                onChange={(e) => setForm({ ...form, message: e.target.value })}
-                className="mt-1 w-full bg-transparent border border-white/10 rounded-md p-2"
-                rows={6}
-              />
-              {errors.message && (
-                <div className="text-xs text-rose-400 mt-1">{errors.message}</div>
-              )}
-            </label>
-
-            <div className="flex gap-3">
-              <Button type="submit">Send Message</Button>
-              <a
-                href="mailto:designer@pcb.example"
-                className="text-sm px-3 py-2 rounded-lg bg-white/5"
-              >
-                Request a Quote
-              </a>
-            </div>
-            {sent && (
-              <div className="text-sm text-green-400 mt-3">
-                Message queued (demo) — integrate with API to make it real.
+          {/* Confirmation Card */}
+          {sent && (
+            <div className="glass p-6 rounded-lg md:col-span-2 border border-emerald-400/30">
+              <div className="text-lg font-semibold text-emerald-300">Query received</div>
+              <div className="mt-2 text-sm text-slate-200">
+                Thank you for reaching out. We have received your query — <b>Madhav Pandey</b> will
+                contact you shortly.
               </div>
-            )}
-          </form>
+              <button
+                type="button"
+                onClick={() => setSent(false)}
+                className="mt-4 px-4 py-2 rounded-lg bg-white/10 hover:bg-white/15 text-sm"
+              >
+                Send another message
+              </button>
+            </div>
+          )}
 
+          {/* Form */}
+          {!sent && (
+            <form className="glass p-6 rounded-lg" onSubmit={handleSubmit}>
+              {/* Honeypot (spam trap) */}
+              <input type="text" name="_honey" style={{ display: 'none' }} />
+
+              <label className="block mb-3">
+                <div className="text-sm">Name</div>
+                <input
+                  name="name"
+                  type="text"
+                  required
+                  value={form.name}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  className="mt-1 w-full bg-transparent border border-white/10 rounded-md p-2"
+                />
+              </label>
+
+              <label className="block mb-3">
+                <div className="text-sm">Email</div>
+                <input
+                  name="email"
+                  type="email"
+                  required
+                  value={form.email}
+                  onChange={(e) => setForm({ ...form, email: e.target.value })}
+                  className="mt-1 w-full bg-transparent border border-white/10 rounded-md p-2"
+                />
+              </label>
+
+              <label className="block mb-3">
+                <div className="text-sm">Message</div>
+                <textarea
+                  name="message"
+                  required
+                  minLength={10}
+                  value={form.message}
+                  onChange={(e) => setForm({ ...form, message: e.target.value })}
+                  className="mt-1 w-full bg-transparent border border-white/10 rounded-md p-2"
+                  rows={6}
+                />
+              </label>
+
+              {error && <div className="text-sm text-rose-300 mb-3">{error}</div>}
+
+              <div className="flex gap-3 items-center">
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/15 disabled:opacity-60"
+                >
+                  {loading ? 'Sending...' : 'Send Message'}
+                </button>
+
+                <a
+                  href="mailto:madhav976141@gmail.com"
+                  className="text-sm px-3 py-2 rounded-lg bg-white/5"
+                >
+                  Request a Quote
+                </a>
+              </div>
+            </form>
+          )}
+
+          {/* Right column */}
           <div className="glass p-6 rounded-lg">
             <div className="font-semibold">Contact Info</div>
-            <div className="mt-2 text-sm text-slate-300">Email: designer@pcb.example</div>
-            <div className="mt-1 text-sm text-slate-300">WhatsApp: +91 98765 43210</div>
-            <div className="mt-1 text-sm text-slate-300">LinkedIn: /in/pcb-designer</div>
-
+            <div className="mt-2 text-sm text-slate-300">Email: madhav976141@gmail.com</div>
+            <div className="mt-1 text-sm text-slate-300">WhatsApp: +91 9761416410</div>
+            <div className="mt-1 text-sm text-slate-300">
+            <span className="text-slate-200">LinkedIn:</span>{" "}
+            <a
+              href="https://www.linkedin.com/in/madhav-pandey-429b98192"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-400 hover:underline"
+            >
+              Click to redirect profile
+            </a>
+          </div>
             <div className="mt-6">
               <div className="font-semibold">Availability</div>
               <div className="text-sm text-slate-300 mt-1">
-                Freelance / Contract — open to 2–4 week projects
+                Freelance / Contract — open to pcb design projects
               </div>
             </div>
           </div>

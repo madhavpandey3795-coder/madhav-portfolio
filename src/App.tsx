@@ -15,9 +15,9 @@ export default function App() {
       <div className="container mx-auto p-6">
         <Hero />
         <About />
-        <Skills />
         <Portfolio />
         <Services />
+        <Skills />
         <Workflow />
         <Testimonials />
         <Contact />

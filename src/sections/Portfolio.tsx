@@ -70,12 +70,12 @@ export default function Portfolio() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <img
               src={projects[active].images[0].thumb}
-              alt=""
+              alt={`${projects[active].title} PCB project image`}
               className="w-full rounded-md"
             />
             <img
               src={projects[active].images[0].render3d}
-              alt=""
+              alt={`${projects[active].title} PCB 3D render`}
               className="w-full rounded-md"
             />
           </div>
