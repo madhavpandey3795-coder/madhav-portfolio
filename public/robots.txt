@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://madhav-pandey.netlify.app/sitemap.xml
