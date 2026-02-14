@@ -44,8 +44,13 @@ export default function Navbar() {
         </div>
 
         <div className="md:hidden">
-          <button onClick={() => setOpen((v) => !v)} className="p-2">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <button 
+            onClick={() => setOpen((v) => !v)} 
+            className="p-2"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path
                 d="M4 6h16M4 12h16M4 18h16"
                 stroke="currentColor"

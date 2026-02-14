@@ -28,6 +28,9 @@ export default function Portfolio() {
                 src={p.images[0].thumb}
                 alt={p.title}
                 className="w-full h-40 object-cover rounded-md"
+                width="494"
+                height="280"
+                loading="lazy"
               />
               <div className="mt-3 flex items-center justify-between">
                 <div>
@@ -72,12 +75,16 @@ export default function Portfolio() {
               src={projects[active].images[0].thumb}
               alt={`${projects[active].title} PCB project image`}
               className="w-full rounded-md"
+              loading="lazy"
             />
-            <img
-              src={projects[active].images[0].render3d}
-              alt={`${projects[active].title} PCB 3D render`}
-              className="w-full rounded-md"
-            />
+            {projects[active].images[0].render3d && (
+              <img
+                src={projects[active].images[0].render3d}
+                alt={`${projects[active].title} PCB 3D render`}
+                className="w-full rounded-md"
+                loading="lazy"
+              />
+            )}
           </div>
           <div className="mt-4">
             <h3 className="font-bold text-lg">{projects[active].title}</h3>

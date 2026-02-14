@@ -83,7 +83,15 @@ export default function Hero() {
 
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center justify-center">
           <div className="w-full max-w-md rounded-2xl overflow-hidden glass p-4">
-            <img src="/blueprint.png" alt="PCB blueprint" className="w-full h-auto object-cover rounded-lg" />
+            <img 
+              src="/blueprint.png" 
+              alt="PCB blueprint" 
+              className="w-full h-auto object-cover rounded-lg"
+              width="494"
+              height="494"
+              fetchPriority="high"
+              loading="eager"
+            />
           </div>
         </motion.div>
       </div>

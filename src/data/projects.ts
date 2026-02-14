@@ -31,15 +31,16 @@ const projects: Project[] = [
     images: [{ thumb: 'highamp.jpeg', render3d: '/src/assets/amplifier-3d.png' }],
   },
 
-  {
-    id: 'p4',
-    title: 'AC & DC Controller Board',
-    description:
-      'Control PCB for AC/DC applications with isolation-aware routing, power-path optimization, and robust safety spacing for reliable field performance.',
-    tools: ['Altium Designer'],
-    complexity: 'advanced',
-    images: [{ thumb: 'acdc.jpeg', render3d: '/src/assets/acdc-3d.png' }],
-  },
+  // Temporarily commented out - acdc.jpeg file not found (causing 404 error)
+  // {
+  //   id: 'p4',
+  //   title: 'AC & DC Controller Board',
+  //   description:
+  //     'Control PCB for AC/DC applications with isolation-aware routing, power-path optimization, and robust safety spacing for reliable field performance.',
+  //   tools: ['Altium Designer'],
+  //   complexity: 'advanced',
+  //   images: [{ thumb: 'acdc.jpeg', render3d: '/src/assets/acdc-3d.png' }],
+  // },
 
   {
     id: 'p5',
